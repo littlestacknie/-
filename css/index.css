@@ -1,0 +1,538 @@
+/* 约束屏幕尺寸 */
+
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 42px !important;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    html {
+        font-size: 80px !important;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+@font-face {
+    font-family: electronicFont;
+    src: url(../font/DS-DIGIT.TTF);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    /*  背景图定位 / 背景图尺寸  cover 完全铺满容器  contain 完整显示在容器内 */
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: cover;
+    /* 行高是字体1.15倍 */
+    line-height: 1.15;
+}
+
+.header {
+    min-width: 1024px;
+    max-width: 1920px;
+    height: 1.3125rem;
+    background: url(../images/head_bg.png) no-repeat 0 0 / contain;
+}
+
+.header h1 {
+    text-align: center;
+    color: #fff;
+    line-height: 1.3125rem;
+    font-size: .5rem;
+}
+
+.main {
+    display: flex;
+    min-width: 1024px;
+    max-width: 1920px;
+    padding: .125rem .25rem 0 .25rem;
+    margin: 0 auto;
+    min-height: 780px;
+}
+
+.main .column {
+    flex: 3;
+    /* background-color: skyblue; */
+}
+
+.main .column:nth-child(2) {
+    flex: 4;
+    padding: 0 .25rem 0 .25rem;
+    /* background-color: pink; */
+}
+
+
+/* 计算模块 */
+
+.cal {
+    position: relative;
+    width: 100%;
+    height: 4.5rem;
+    padding-top: .125rem;
+    font-size: .25rem;
+    border: .0125rem solid rgba(25, 186, 139, 0.17);
+    background: rgba(255, 255, 255, 0.04) url(../images/line.png);
+}
+
+.cal::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.cal::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+.cal .cal-title {
+    font-size: .375rem;
+    text-align: center;
+    height: .625rem;
+    line-height: .625rem;
+}
+
+.cal .cal-main {
+    padding-right: 0.8rem;
+    position: relative;
+}
+
+.cal .cal-main ul li {
+    float: right;
+    padding: .125rem 0 0 0;
+}
+
+.cal .cal-main ul li input {
+    border: 0;
+    background-color: rgba(255, 255, 255, .3);
+    color: rgb(194, 189, 189);
+}
+
+#btn1 {
+    position: absolute;
+    top: 2.9rem;
+    left: 1.625rem;
+    width: 2rem;
+    height: 0.5rem;
+    background-color: rgba(255, 255, 255, .3);
+    border: 0;
+    font-size: .25rem;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#btn2 {
+    position: absolute;
+    top: 2.9rem;
+    left: 4.5rem;
+    background-color: rgba(255, 255, 255, .3);
+    color: #fff;
+    border: 0;
+    width: 1.2rem;
+    height: 0.5rem;
+    font-size: .25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.top-footer::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.top-footer::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+
+/* 图示模块 */
+
+.size {
+    margin-top: .375rem;
+    position: relative;
+    padding-top: 0.1rem;
+    width: 100%;
+    height: 6.875rem;
+    border: .0125rem solid rgba(25, 186, 139, 0.17);
+    /* background: url(../images/line.png) no-repeat center center; */
+    background: rgba(255, 255, 255, 0.04) url(../images/line.png);
+}
+
+.size::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.size::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+.size h1 {
+    font-size: .375rem;
+    text-align: center;
+    height: .625rem;
+    line-height: .625rem;
+}
+
+.size .note {
+    padding: .0625rem .625rem 0 1.7rem;
+    width: 100%;
+    height: 1rem;
+}
+
+.note span {
+    display: inline-block;
+    padding-top: .125rem;
+}
+
+.note input {
+    width: 1rem;
+    border: 0;
+    background-color: rgba(255, 255, 255, .3);
+    color: #fff;
+    text-align: center;
+}
+
+.size .pic {
+    position: absolute;
+    width: 100%;
+    height: 5rem;
+    background: url(../images/结构示意图.png) no-repeat center center;
+    background-size: contain;
+}
+
+.size .pic::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.size .pic::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+
+/* 最优配置模块 */
+
+.boption {
+    position: relative;
+    width: 100%;
+    padding-top: .125rem;
+    border: .0125rem solid rgba(25, 186, 139, 0.17);
+    background: rgba(255, 255, 255, 0.04) url(../images/line.png);
+}
+
+.boption::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.boption::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+.boption h1 {
+    font-size: .375rem;
+    text-align: center;
+    height: .625rem;
+    line-height: .625rem;
+}
+
+.boption-main table {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 13px;
+    text-align: center;
+}
+
+.boption-main table th,
+td {
+    padding-right: 10px;
+}
+
+.best-option-footer::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.best-option-footer::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+
+/* 图表模块 */
+
+.chart {
+    height: 810px;
+}
+
+.chart .tab {
+    margin: 30px 0 0 16px;
+    height: 50px;
+    /* background-color: skyblue; */
+}
+
+.chart .tab li {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px 0 20px;
+    /* margin-right: 20px; */
+    /* background-color: pink; */
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.current {
+    background-color: rgba(255, 255, 255, .3);
+    font-weight: 700;
+}
+
+.chart .content {
+    position: relative;
+    height: 650px;
+    width: 600px;
+    /* background-color: slateblue; */
+}
+
+.content .map1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 518px;
+    height: 518px;
+    background: url(../images/map.png);
+    background-size: 100% 100%;
+    opacity: 0.1;
+}
+
+.content .map2 {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(../images/lbx.png) no-repeat 0 0 / contain;
+    opacity: 0.6;
+    animation: rotate1 15s linear infinite;
+}
+
+@keyframes rotate1 {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.content .map3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 566px;
+    height: 566px;
+    background: url(../images/jt.png);
+    background-size: 100% 100%;
+    opacity: 0.6;
+    animation: rotate2 10s linear infinite;
+}
+
+@keyframes rotate2 {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+.content .jiegou {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+    width: 566px;
+    height: 566px;
+    /* background-color: azure; */
+}
+
+.content .zuli {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+    width: 566px;
+    height: 566px;
+    /* background-color: azure; */
+}
+
+
+/* 历史数据 */
+
+.history-date {
+    position: relative;
+    width: 100%;
+    height: 11.8rem;
+    padding-top: .125rem;
+    font-size: .25rem;
+    border: .0125rem solid rgba(25, 186, 139, 0.17);
+    background: rgba(255, 255, 255, 0.04) url(../images/line.png);
+}
+
+.history-date::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.history-date::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}
+
+.history-date .history-date-title {
+    font-size: .375rem;
+    text-align: center;
+    height: .625rem;
+    line-height: .625rem;
+}
+
+.history-date-main table {
+    padding-top: 10px;
+}
+
+.history-date-main table thead tr th {
+    width: 60px;
+}
+
+.history-date-main table tbody tr td {
+    padding: 0;
+    text-align: center;
+    width: 60px;
+}
+
+.history-date-footer::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-left: 2px solid #02a6b5;
+}
+
+.history-date-footer::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #02a6b5;
+    border-right: 2px solid #02a6b5;
+}

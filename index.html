@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应力计算器</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <h1>腔体结构可视化</h1>
+    </div>
+    <!-- 主体 -->
+    <div class="main">
+        <div class="column">
+            <div class="cal">
+                <h1 class="cal-title">计算模块</h1>
+                <div class="cal-main">
+                    <ul class="cal-input">
+                        <li><span>腔内压强（MPa）：</span><input type="text" id="pressure"></li>
+                        <li><span>支撑柱半径（mm）：</span><input type="text" id="banjing" value="请输入3~11之间的值"></li>
+                        <li><span>上下板厚（mm）：</span><input type="text" id="banhou" value="板厚与倒角之和不超过2.5"></li>
+                        <li><span>支撑柱倒角（mm）：</span><input type="text" id="daojiao" value="板厚与倒角之和不超过2.5"></li>
+                        <li><span>孔隙率&nbsp;  ：</span><input type="text" id="kongxilv" value="请输入0~1之间的值"></li>
+                        <li><span>最大应力（MPa）：</span><input type="text" id="yingli"></li>
+                    </ul>
+                    <button id='btn1'>计算</button><button id='btn2'>重置</button>
+                </div>
+                <div class="top-footer"></div>
+            </div>
+            <div class="size">
+                <h1 class="size-title">图示模块</h1>
+                <div class="note">
+                    <span>L=<input type="text">mm，</span>
+                    <span>d=<input type="text">mm</span>
+                    <span>α=<input type="text">mm，</span>
+                    <span>h=<input type="text">mm</span>
+                </div>
+                <div class="pic">
+                </div>
+
+            </div>
+        </div>
+        <div class="column">
+            <div class="boption">
+                <h1 class="boption-title">最优配置</h1>
+                <div class="boption-main">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>压强</th>
+                                <th>支撑柱半径</th>
+                                <th>上下板厚</th>
+                                <th>支撑柱倒角</th>
+                                <th>孔隙率</th>
+                                <th>支撑柱间距</th>
+                                <th>最大应力</th>
+                                <th>流阻</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="best-option-footer"></div>
+            </div>
+            <div class="chart">
+                <div class="tab">
+                    <ul>
+                        <li>结构设计图</li>
+                        <li>流动阻力图</li>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="map1"></div>
+                    <div class="map2"></div>
+                    <div class="map3"></div>
+                    <!-- <section class="current2"></section> -->
+                    <section class="jiegou"></section>
+                    <section class="zuli"></section>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="history-date">
+                <h1 class="history-date-title">历史数据</h1>
+                <div class="history-date-main">
+                    <!-- 压强-半径-板厚-倒角-孔隙率-最大应力-流阻 -->
+                    <table cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>压强</th>
+                                <th>半径</th>
+                                <th>板厚</th>
+                                <th>倒角</th>
+                                <th>孔隙率</th>
+                                <th>应力</th>
+                                <th>流阻</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="history-date-footer"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="js/index1.js"></script>
+
+</body>
+
+</html>

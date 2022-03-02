@@ -180,7 +180,7 @@ btn1.onclick = function() {
             if (empty == 1) {
                 n = [arr4[0], y[i], arr4[1], arr4[2], arr4[3], arr4[4]]
 
-                console.log(n);
+                // console.log(n);
 
             } else if (empty == 2) {
                 n = [arr4[0], arr4[1], y[i], arr4[2], arr4[3], arr4[4]]

@@ -208,26 +208,19 @@ btn1.onclick = function() {
             var aim_stress = 366
             if (n[6] <= aim_stress) {
                 if (n[6] - temp_stress >= 0) {
-
                     if (n[7] - temp_zuli <= 0) {
                         temp_stress = n[6]
                         temp_zuli = n[7]
                         temp_arr = n
-
                     }
-
                 }
             }
-
-
         }
         // console.log(temp_arr);
         if (temp_arr.length) {
-
             for (var i = 0; i < tds.length; i++) {
                 tds[i].innerHTML = '' + temp_arr[i] + ''
             }
-
             note_inputs[0].value = tds[5].innerHTML
             note_inputs[1].value = '' + 2 * tds[1].innerHTML + ''
             note_inputs[2].value = tds[3].innerHTML
@@ -446,8 +439,13 @@ $(function() {
 // 定义历史数据模块
 var minstress = 1000;
 var minzuli = 500;
+var outputStr = '压强(MPa),半径(mm),板厚(mm),倒角(mm),孔隙率,应力(MPa),流阻\n'
 
 function AddHistory(arrHistory) {
+    console.log(arrHistory);
+    let str = arrHistory.join(',') + '\n'
+    outputStr += str
+    console.log(outputStr);
     var tbody = document.querySelector('.history-date-main table tbody')
     var trs = document.querySelector('.history-date-main table tbody').querySelectorAll('tr')
     var tr = document.createElement("tr")
@@ -467,8 +465,14 @@ function AddHistory(arrHistory) {
     }
     tbody.appendChild(tr)
 }
-
-document.addEventListener("click", function(e) {
-    console.log(e.clientX)
-    console.log(e.clientY)
+//导出Excel
+var export_btn = document.querySelector('.export')
+export_btn.addEventListener('click', function() {
+    var BB = self.Blob;
+    saveAs(new BB(
+        //\ufeff防止utf8 bom防止中文乱码
+        ["\ufeff" + outputStr], {
+            type: "text/plain;charset=utf8"
+        }
+    ), "history_data.csv");
 })

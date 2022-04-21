@@ -496,6 +496,23 @@ td {
     border-right: 2px solid #02a6b5;
 }
 
+.export {
+    position: absolute;
+    top: 11px;
+    left: 300px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    padding: 0 10px 0 10px;
+}
+
+.export:hover {
+    cursor: pointer;
+}
+
 .history-date .history-date-title {
     font-size: .375rem;
     text-align: center;

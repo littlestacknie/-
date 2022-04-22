@@ -369,8 +369,6 @@ function getKongXiLv(a, b, c, d, f) {
 
 
 function getYingLi(a, b, c, d, e) {
-
-
     var k1 = 1.22 * Math.pow(d, 2) - 4.9 * d + 4.96;
     var k2 = 0.07 * Math.pow(d, 4.95) + 1.91;
     var k3 = 1.63 - 0.47 * d;
@@ -439,13 +437,14 @@ $(function() {
 // 定义历史数据模块
 var minstress = 1000;
 var minzuli = 500;
-var outputStr = '压强(MPa),半径(mm),板厚(mm),倒角(mm),孔隙率,应力(MPa),流阻\n'
 
 function AddHistory(arrHistory) {
-    console.log(arrHistory);
-    let str = arrHistory.join(',') + '\n'
-    outputStr += str
-    console.log(outputStr);
+    let postdata = arrHistory.join(',')
+    axios.request({
+        url: 'http://localhost:7000',
+        method: 'post',
+        data: postdata
+    })
     var tbody = document.querySelector('.history-date-main table tbody')
     var trs = document.querySelector('.history-date-main table tbody').querySelectorAll('tr')
     var tr = document.createElement("tr")
@@ -468,11 +467,17 @@ function AddHistory(arrHistory) {
 //导出Excel
 var export_btn = document.querySelector('.export')
 export_btn.addEventListener('click', function() {
-    var BB = self.Blob;
-    saveAs(new BB(
-        //\ufeff防止utf8 bom防止中文乱码
-        ["\ufeff" + outputStr], {
-            type: "text/plain;charset=utf8"
-        }
-    ), "history_data.csv");
+    axios.request({
+        url: 'http://localhost:7000',
+        method: 'get'
+    }).then(res => {
+        const { data } = res.data
+        var BB = self.Blob;
+        saveAs(new BB(
+            //\ufeff防止utf8 bom防止中文乱码
+            ["\ufeff" + data], {
+                type: "text/plain;charset=utf8"
+            }
+        ), "history_data.csv");
+    })
 })

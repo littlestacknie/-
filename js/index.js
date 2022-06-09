@@ -3,7 +3,6 @@
 var inputs = document.querySelector('.cal-input').querySelectorAll('input')
 var tds = document.querySelector('tbody tr').querySelectorAll('td')
 var note_inputs = document.querySelector('.note').querySelectorAll('input')
-var yAxisLable='',xAxisLable=''
     // 键盘事件
 $(function() {
         $(".cal-input input").keyup(function(e) {
@@ -98,24 +97,19 @@ btn1.onclick = function() {
         if (!(parseFloat(inputs[i].value) / 1)) {
             empty = i
         }
-    }  
+    }
     switch (empty) {
         case 1:
             var fn = getBanJing
-            //确定y轴标签
-            yAxisLable='支撑柱半径/mm'
             break;
         case 2:
             var fn = getBanHou
-            yAxisLable='上下板厚/mm'
             break;
         case 4:
             var fn = getKongXiLv
-            yAxisLable='孔隙率'
             break;
         case 5:
             var fn = getYingLi
-            yAxisLable='最大应力/MPa'
             break;
 
     }
@@ -151,37 +145,24 @@ btn1.onclick = function() {
 
         AddHistory(arr1);
     } else {
-        // 4.有范围取值
-        //确定x轴标签
-        switch (link) {
-            case 1:
-                xAxisLable='支撑柱半径/mm'
-                break;
-            case 2:
-                xAxisLable='上下板厚/mm'
-                break;
-            case 3:
-                xAxisLable='支撑柱倒角/mm'
-                break;
-            case 4:
-                xAxisLable='孔隙率'
-                break;
-            case 5:
-                xAxisLable='最大应力/MPa'
-                break;
-        }
+        // 4.有范围取值 
         var n = 20
         var arr2 = inputs[link].value.split('-')
+            // console.log(arr2);
         var min = parseFloat(arr2[0])
         var max = parseFloat(arr2[1])
         var step = parseFloat(((max - min) / n).toFixed(4))
+            // console.log(min, max, step);
+            // var x = Array(n + 1).join(' ').split(' ').map((e, i) => parseFloat((min + step * i)))
         var x = Array(n + 1).join(' ').split(' ').map((e, i) => parseFloat((min + step * i).toFixed(3)))
+            // console.log(x);
         var arr3 = []
         for (var i = 0; i < inputs.length; i++) {
             if (i != empty && i != link) {
                 arr3.push(parseFloat(inputs[i].value))
             }
         }
+        // console.log(arr3);
         var y = []
         var n = []
         var m = []
@@ -193,13 +174,20 @@ btn1.onclick = function() {
             } else {
                 arr4.splice(link - 1, 0, x[i])
             }
+
+            // console.log(arr4);
             y[i] = parseFloat(fn(...arr4))
             if (empty == 1) {
                 n = [arr4[0], y[i], arr4[1], arr4[2], arr4[3], arr4[4]]
+
+                // console.log(n);
+
             } else if (empty == 2) {
                 n = [arr4[0], arr4[1], y[i], arr4[2], arr4[3], arr4[4]]
+                    // console.log(n);
             } else if (empty == 4) {
                 n = [arr4[0], arr4[1], arr4[2], arr4[3], y[i], arr4[4]]
+                    // console.log(n);
             } else {
                 n = [arr4[0], arr4[1], arr4[2], arr4[3], arr4[4], y[i]]
 
@@ -264,34 +252,34 @@ btn1.onclick = function() {
             color: ['#ccc'],
             tooltip: {
                 show: true,
+
                 trigger: 'axis'
             },
             grid: {
+                left: '4%',
+                right: '4%',
+                bottom: '3%',
                 containLabel: true
             },
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                name: xAxisLable,
-                nameLocation: 'center',               
-                nameGap:30,
                 data: x,
                 scale: true,
                 axisLine: {
                     lineStyle: {
                         color: '#fff'
                     }
-                },
+                }
             },
             yAxis: {
                 type: 'value',
-                name:yAxisLable,
                 scale: true,
                 axisLine: {
                     lineStyle: {
                         color: '#fff'
                     }
-                },
+                }
 
             },
             series: [{
@@ -311,17 +299,14 @@ btn1.onclick = function() {
                 trigger: 'axis'
             },
             grid: {
-                // left: '4%',
-                // right: '4%',
-                // bottom: '3%',
+                left: '4%',
+                right: '4%',
+                bottom: '3%',
                 containLabel: true
             },
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                name: xAxisLable,
-                nameLocation: 'center',               
-                nameGap:30,
                 data: x,
                 scale: true,
                 axisLine: {
@@ -332,7 +317,6 @@ btn1.onclick = function() {
             },
             yAxis: {
                 type: 'value',
-                name: '单位长度压降/Pa',
                 scale: true,
                 axisLine: {
                     lineStyle: {
@@ -423,17 +407,16 @@ function getBanHou(a, b, d, e, f) {
 }
 
 function getZuLi(b, c, e) {
-    var w = ((Math.sqrt(3.1415926 / 3.464 / (1 - e))-1) * b).toFixed(3)
+    var R = Math.pow(3.1415926 * 1.732 / 6 / (1 - e), 0.5) * b
     var h = 5 - 2 * c
-    var ZuLi = 400*Math.pow(Math.E,(-h/0.56).toFixed(3))+622.78*Math.pow(Math.E,(-w/3.97).toFixed(3))+45.6
-    return ZuLi.toFixed(2);
+    var k1 = 4 * h * (R - b) / (h + 2 * (R - b))
+    var ZuLi = parseFloat((1 / (0.41 * Math.pow(k1, -2.4) + 0.00786)).toFixed(2))
+    return ZuLi;
 }
 
-function getJianJu (b, e) {
-    console.log(b,e);
-    var R = Math.sqrt(3.1415926 * b * b /1.732 / 2 / (1 - e)) 
-    console.log(R ,'123');
-    var JianJu = parseFloat((2 * R ).toFixed(2))
+function getJianJu(b, e) {
+    var R = Math.pow(3.1415926 * 1.732 / 6 / (1 - e), 0.5) * b
+    var JianJu = parseFloat((2 * (R - b)).toFixed(2))
     return JianJu;
 }
 // Tab导航栏模块
@@ -456,12 +439,12 @@ var minstress = 1000;
 var minzuli = 500;
 
 function AddHistory(arrHistory) {
-    // let postdata = arrHistory.join(',')
-    // axios.request({
-    //     url: 'http://localhost:7000',
-    //     method: 'post',
-    //     data: postdata
-    // })
+    let postdata = arrHistory.join(',')
+    axios.request({
+        url: 'http://localhost:7000',
+        method: 'post',
+        data: postdata
+    })
     var tbody = document.querySelector('.history-date-main table tbody')
     var trs = document.querySelector('.history-date-main table tbody').querySelectorAll('tr')
     var tr = document.createElement("tr")
@@ -482,19 +465,19 @@ function AddHistory(arrHistory) {
     tbody.appendChild(tr)
 }
 //导出Excel
-// var export_btn = document.querySelector('.export')
-// export_btn.addEventListener('click', function() {
-//     axios.request({
-//         url: 'http://localhost:7000',
-//         method: 'get'
-//     }).then(res => {
-//         const { data } = res.data
-//         var BB = self.Blob;
-//         saveAs(new BB(
-//             //\ufeff防止utf8 bom防止中文乱码
-//             ["\ufeff" + data], {
-//                 type: "text/plain;charset=utf8"
-//             }
-//         ), "history_data.csv");
-//     })
-// })
+var export_btn = document.querySelector('.export')
+export_btn.addEventListener('click', function() {
+    axios.request({
+        url: 'http://localhost:7000',
+        method: 'get'
+    }).then(res => {
+        const { data } = res.data
+        var BB = self.Blob;
+        saveAs(new BB(
+            //\ufeff防止utf8 bom防止中文乱码
+            ["\ufeff" + data], {
+                type: "text/plain;charset=utf8"
+            }
+        ), "history_data.csv");
+    })
+})

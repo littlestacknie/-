@@ -40,6 +40,7 @@ body {
 }
 
 .header {
+    position: relative;
     min-width: 1300px;
     max-width: 1920px;
     height: 1.3125rem;
@@ -52,7 +53,15 @@ body {
     line-height: 1.3125rem;
     font-size: .5rem;
 }
-
+.header .logo{
+    z-index: 1;
+    position: absolute;
+    top:.025rem;
+    right: .25rem;
+    width: 2.5rem;
+    height: .9rem;
+    background: url(../images/logo.png) no-repeat 0 0 / contain;
+}
 .main {
     display: flex;
     min-width: 1300px;
@@ -231,14 +240,16 @@ body {
 }
 
 .note span {
+    font-size: .25rem;
     display: inline-block;
     padding-top: .125rem;
 }
 
 .note input {
+    height: .25rem;
     width: 1rem;
     border: 0;
-    background-color: rgba(255, 255, 255, .3);
+    background-color: rgba(255, 255, 255, 0.3);
     color: #fff;
     text-align: center;
 }
@@ -442,22 +453,22 @@ td {
 
 .content .jiegou {
     position: absolute;
-    top: 0.8rem;
+    top: 1rem;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
     /* background-color: azure; */
 }
 
 .content .zuli {
     display: none;
     position: absolute;
-    top: 0.8rem;
+    top: 1rem;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
     /* background-color: azure; */
 }
 
